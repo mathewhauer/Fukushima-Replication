@@ -118,11 +118,11 @@ To assess permanent migration, we focus on the year preceding (2010), the year o
 
 We characterize the migration system of Japan in seven matrices representing the total prefecture-to-prefecture migration as a proportion of total flows out of any given prefecture. Unlike Fussell, Curtis, and DeWaard's systems work on New Orleans after Hurricanes Katrina and Rita [-@fussell14], we do not control for population size since any change in population in any prefecture will exogenously alter a migration rate, ie the changes in the migration system should be examined independently of other population dynamics such as mortality and fertility. Rather, we use the proportionality of the flows, expressed as $\frac{M_{i,j}}{M_{i}}$, the ratio of the migrants from prefecture $i$ to $j$ to the total number of out migrants from prefecture $i$ to investigate the similarity in the migration systems.
 
-We would anticipate changes in the number of migrants after a disaster of this magnitude, but are rather interested in seeing the changes in the structure of the migration system. A set of matrices covering the period 2004-2016 represent the pre-disaster migration system ($Q(2004),..., Q(2010)$), the peri-disaster migration system ($Q(2011)$), and the post-disaster migration system ($Q(2012),...,Q(2016)$). We also construct a matrix for the evacuees $Q(e)$ (utilizing data from the Evacuee Information Exchange System on evacuees in February of 2012). These matrices take the following general form as shown in Eq. \ref{eq1} and \ref{eq3}.
+We would anticipate changes in the number of migrants after a disaster of this magnitude, but are rather interested in seeing the changes in the structure of the migration system. A set of matrices covering the period 2004-2016 represent the pre-disaster migration system ($M(2004),..., M(2010)$), the peri-disaster migration system ($M(2011)$), and the post-disaster migration system ($QM(2012),...,M(2016)$). We also construct a matrix for the evacuees $M(e)$ (utilizing data from the Evacuee Information Exchange System on evacuees in February of 2012). These matrices take the following general form as shown in Eq. \ref{eq1} and \ref{eq3}.
  
  
   \begin{equation}\label{eq1}
-  Q(x)=
+  M(x)=
 \left \{
   \begin{tabular}{ccc}
   $\frac{M_{i,i}}{M_{i}}$ & $\cdots$ & $\frac{M_{i,j}}{M_{i}}$ \\
@@ -134,7 +134,7 @@ We would anticipate changes in the number of migrants after a disaster of this m
   
   
   \begin{equation}\label{eq3}
-  Q(e)=
+  M(e)=
 \left \{
   \begin{tabular}{ccc}
   $\frac{E_{F,i}}{E_{F}}$ & $\cdots$ & $\frac{E_{F,j}}{E_{F}}$ \\
@@ -143,13 +143,17 @@ We would anticipate changes in the number of migrants after a disaster of this m
   \end{equation}
  
 where:
+
 $x$ is the set of time periods $x\in\{2004,...,2016\}$
-$F$ in $Q(e)$ refers to Fukushima prefecture.
+
+$F$ in $M(e)$ refers to Fukushima Prefecture.
+
+$i$ through $j$ refer to the set of 47 Japanese prefectures $\in\{Aichi,...,Yamanashi\}$
 
 These matrices have no "net" migrants and represent the complete picture of prefecture-to-prefecture out-migration. The sum of any given row in the matrix will equal 1.0, representing the total probability distribution of flows from any given prefecture to any given prefecture. 
 <!-- With 47 prefectures, the total number of cells in these origin-destination matrices is 4,418, representing the complete migration profile for Japan with any given prefecture accounting for 94 cells.  -->
 
-While the magnitudes of the flows can and should be different pre- and post- disaster, our tests determine whether the overall structure of the flows to each prefecture changed in the post-disaster period. For instance, in 2010 4.7% of all out-migrants from Fukushima Prefecture went to Tochigi Prefecture (1,470 of 31,363 out-migrants) and 4.8% in 2011 (2,542 of 53,122). Despite a 73% increase in the number of migrants from Fukushima to Tochigi, the proportion of out-migrants remained virtually unchanged. We are interested in whether the migration systems between the time periods Q(2011, 2012, 2013, e) differs significantly from Q(2010), not necessarily in the absolute changes in both in- and out-flows. 
+While the magnitudes of the flows can and should be different pre- and post- disaster, our tests determine whether the overall structure of the flows to each prefecture changed in the post-disaster period. For instance, in 2010 4.7% of all out-migrants from Fukushima Prefecture went to Tochigi Prefecture (1,470 of 31,363 out-migrants) and 4.8% in 2011 (2,542 of 53,122). Despite a 73% increase in the number of migrants from Fukushima to Tochigi, the proportion of out-migrants remained virtually unchanged. We are interested in whether the migration systems between the time periods M(2011, 2012, 2013, e) differs significantly from M(2010), not necessarily in the absolute changes in both in- and out-flows. 
 
 By converting the origin-destination matrices into matrices of probability distributions (ie the probability of moving from prefecture $i$ to prefecture $j$), statistical distance metrics used to quantify the similarity between two probability distributions. We utilize the Hellinger distance metric to quantify the similarity and dissimilarity for each prefecture between time periods. Hellinger distance, $H(P,Q)$, describes the distance between two discrete probability distributions $P=(p_1,...p_k$) and $Q=(q_1,...,q_k$). 
 
@@ -178,7 +182,7 @@ All data and code necessary to reproduce the reported results are licensed under
 
 ## Statistical Distance
 
-**\autoref{fig:Hell}** reports the results of the Hellinger distances comparing the annual differences between 2004 and 2015 out-migration from each prefecture. The differences between any given origin prefecture are relatively small for permanent out-migration ($Q(x)$), with `r top_n(sumstats, 1, distance)$id` Prefecture exhibiting the greatest difference among any yearly comparison (H = `r round(top_n(sumstats, 1, distance)$distance ,5)`) and  `r top_n(sumstats, -1, distance)$id` exhibiting the smallest difference (H = `r round(top_n(sumstats, -1, distance)$distance ,5)`). The mean Hellinger distance is `r round(mean(KLdat$distance),5)` with a standard deviation of `r round(sd(KLdat$distance), 5)`. 
+**\autoref{fig:Hell}** reports the results of the Hellinger distances comparing the annual differences between 2004 and 2015 out-migration from each prefecture. The differences between any given origin prefecture are relatively small for permanent out-migration ($M(x)$), with `r top_n(sumstats, 1, distance)$id` Prefecture exhibiting the greatest difference among any yearly comparison (H = `r round(top_n(sumstats, 1, distance)$distance ,5)`) and  `r top_n(sumstats, -1, distance)$id` exhibiting the smallest difference (H = `r round(top_n(sumstats, -1, distance)$distance ,5)`). The mean Hellinger distance is `r round(mean(KLdat$distance),5)` with a standard deviation of `r round(sd(KLdat$distance), 5)`. 
 
 ```{r HellFig, echo= FALSE, message = FALSE, warning = FALSE, fig.cap= paste("\\textbf{Hellinger distances comparing probability of out-migration destination yearly comparion between all years.} A Hellinger distance of 0 indicates an identical probability distribution. Fukushima, Iwate, and Miyagi prefectures along with Evacuees are highlighted along the bottom. Evacuees represent a considerable outlier. \\label{fig:Hell}")}
 ```
