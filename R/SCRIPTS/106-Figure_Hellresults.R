@@ -18,7 +18,7 @@ ggplot(data=ridgedat, aes(x= distance)) +
   scale_color_brewer(palette="Set1") +
   scale_x_continuous(expand = c(0.0, 0),
                      # breaks = c(0.13, 0.41)
-                     limits = c(0,0.7)) +
+                     limits = c(0,0.4)) +
   theme_bw() +
-  theme(legend.position = c(0.9, 0.5))+
+  theme(legend.position = c(0.9, 0.3))+
   labs(x = "Hellinger Distance")

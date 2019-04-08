@@ -47,7 +47,7 @@ for(i in 1:(length(nums)-1)){
     out2 <- NULL
     out2$id[id] <- id
     out2$YEAR[id] <- paste0(unique(KLdata$year)[1], unique(KLdata$year)[2])
-    out2$distance[id]<- philentropy::distance(x, method = "hellinger")
+    out2$distance[id]<- philentropy::distance(x, method = "hellinger")/2 # for some reason philentropy bounds hellinger from 0 to 2, instead of 0 to 1.
     out2 <- as.data.frame(out2)
     out <- rbind(out, out2)
 }}
@@ -70,7 +70,7 @@ fuku <- as.matrix(rbind(fukmiga, fukevaca) %>%
   dplyr::select(-origin))
 f <- NULL
 f$id <- "Evacuees"
-f$distance <- philentropy::distance(fuku, method = "hellinger")
+f$distance <- philentropy::distance(fuku, method = "hellinger")/2
 f$YEAR <- "X2010X2011"
 f <- as.data.frame(f)
 
