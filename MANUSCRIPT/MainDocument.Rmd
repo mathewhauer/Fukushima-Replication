@@ -5,12 +5,6 @@ title: Evacuees and Migrants Exhibit Different Migration Systems after the Great
 blinded: 1
 
 authors: 
-- name: Mathew E. Hauer
-  affiliation: Department of Sociology, Florida State University
-- name: Steven R. Holloway
-  affiliation: Department of Geography, University of Georgia
-- name: Takashi Oda
-  affiliation: Miyagi University of Education
 
 keywords:
 - Great East Japan Earthquake
