@@ -2,7 +2,7 @@
 title: Evacuees and Migrants Exhibit Different Migration Systems after the Great East Japan Earthquake and Tsunami
 
 # to produce blinded version set to 1
-blinded: 1
+blinded: 0
 
 authors: 
 
@@ -44,6 +44,7 @@ read_chunk('../R/SCRIPTS/101-Figure_JapanMap.R')
 read_chunk('../R/SCRIPTS/104-Figure_JapanMap_base.R')
 read_chunk('../R/SCRIPTS/106-Figure_Hellresults.R')
 read_chunk('../R/SCRIPTS/103-Figure_NearbyPrefectures.R')
+read_chunk('../R/SCRIPTS/107-Figure-Total-Migrants-Comparison-Multipanel.R')
 
 ```
 
@@ -60,36 +61,54 @@ read_chunk('../R/SCRIPTS/103-Figure_NearbyPrefectures.R')
 ```
 
 # Introduction
-Environmentally induced migration and displacement is a key concern of global environmental change [@black11;@findlay11;@hugo11;@mueller14;@field2014ipcc], with climate change expected to spur migration and displacement [@warner2009search;@gray2016country]. As the recent World Bank *Groundswell* report shows, how this environmentally induced migration differs from more general migration is of key importance to understanding and modeling potential population shifts associated with climate change this century [@rigaud2018groundswell]. 
+Environmentally induced migration and displacement is a key concern of global environmental change [@black11;@findlay11;@hugo11;@mueller14;@field2014ipcc], with climate change expected to spur migration and displacement [@warner2009search;@gray2016country]. How this environmentally induced migration differs from more general migration is of key importance to understanding and modeling potential population shifts associated with climate change this century [@rigaud2018groundswell]. 
 
-Migration in response to environmental stressors oftentimes depends on the type of stressor [@gutmann10;@hunter13;@thiede13]. For instance, droughts might generate migrants but generally do not generate evacuees (who might eschew long-distance moves in favor of moves to safer, nearby areas), whereas tropical cyclones and tsunamis can generate both. Previous studies have shown migration and displacement from rapid-onset environmental events (such as tropical cyclones) leads to a dichotomous spatial concentration of migration toward nearby areas [@curtis2015recovery;@kayastha85] and long-distance migration toward far away areas [@hori09]. 
+Migration in response to environmental stressors oftentimes depends on the type of stressor [@gutmann10;@hunter13;@thiede13]. Previous studies have shown migration and displacement from rapid-onset environmental events (such as tropical cyclones) leads to a dichotomous spatial concentration of migration toward nearby areas [@curtis2015recovery;@kayastha85] and long-distance migration toward far away areas [@hori09]. We contend that this dichotomy results from two distinct migration pathways operating simultaneously: an evacuee pathway and a more permanent migration pathway. We define evacuees as those who primarily make temporary, short-distance migrations and we define more permanent migrants as those who primarily leverage preexisting migration networks to make more permanent migrations. Rectifying this dichotomy will allow for better modeling of environmental migration but, due to data limitations, post-disaster migration studies typically analyze evacuees and migrants in a single migration datum.
 
-We contend that this dichotomy is the result of two distinct migration pathways being captured within a single datum: an evacuee pathway, traveling short-distances, and a permanent migration pathway, traveling along embedded migration pathways [@randell2018strength]. Rectifying this dichotomy will allow for better modeling of environmental migration but, due to data limitations, post-disaster migration studies typically do not distinguish evacuees from migrants [@curtis2015recovery].
+The Great East Japan Earthquake and Tsunami in March 2011, which ultimately lead to the failure of the Fukushima-Daiichi nuclear plant, prompted the Japanese government to capture both permanent and temporary migration in two separate migration data universes, providing a unique opportunity to parse environmental migration into permanent and temporary classifications. This unique data ecosystem allows us to empirically compare and contrast the migration pathways of permanent migrants and evacuees to address the dichotomous migration pathways observed in literature. 
 
-The Great East Japan Earthquake and Tsunami in March 2011, which ultimately lead to the failure of the Fukushima-Daiichi nuclear plant, prompted the Japanese government to capture both permanent and temporary migration in two separate migration data universes, providing a unique opportunity to parse environmental migration into permanent and temporary classifications. This unique data ecosystem allows us to empirically compare and contrast the migration pathways of permanent migrants and evacuees to resolve the dichotomous migration pathways observed in literature. 
-
-In this paper, we focus on the destinations of migrants and evacuees after the Great East Japan Earthquake and Tsunami and we situate our results within Allan Findlay's six principles governing migration [@findlay11]. In particular, we take a migration systems approach to answer two fundamental questions about environmental migration: first, did the disaster alter the destinations of out-migrants from the affected region? and second, do evacuees and migrants share migration systems with the pre-disaster migration system and with each other? The parsing of evacuees from migrants in the Japanese data collection system allows for a novel approach in understanding post-disaster migration. Due to our unique data sets, we can distinguish and compare the migration systems of evacuees and migrants in response to an acute natural disaster. Our results show that, as expected, the earthquake and tsunami altered the overall migration system of the region, but (1) the destinations of more permanent migration closely follows the pre-disaster, embedded migration system and (2) evacuees exhibit markedly different destinations, tending to travel short distances. 
+In this paper, we focus on the destinations of migrants and evacuees after the Great East Japan Earthquake and Tsunami and we situate our results within Allan Findlay's six principles governing migration [@findlay11]. In particular, we take a migration systems approach to answer two fundamental questions about environmental migration: first, did the disaster alter the destinations of out-migrants from the affected region? and second, do evacuees and migrants share migration systems with the pre-disaster migration system and with each other? The parsing of evacuees from migrants in the Japanese data collection system allows for a novel approach in understanding post-disaster migration. Due to our unique data sets, we can distinguish and compare the migration systems of evacuees and migrants in response to an acute natural disaster. Our results show that (1) as expected, the earthquake and tsunami increased the overall migration in the region, but (2) the destinations of more permanent migration closely follows the pre-disaster, embedded migration system and (3) evacuees exhibit markedly different destinations, tending to travel short distances. 
 
 # Great East Japan Earthquake and Tsunami
-On March 11, 2011, a magnitude 9.0 earthquake occurred off the east coast of Japan –- the most powerful earthquake on record in that country and the fourth most powerful in the world since record keeping began in 1900 [@usgs14]. This event triggered a tsunami that was on average 10m high and up to 40m in height in some places [@sawa13], killing 15,871 people and injuring 6,114 more. An additional 2,778 people were still missing and presumed dead up two years after the earthquake [@hasegawa13]. Financial damages were estimated near \$160 billion (\$US2011), with more than 300,000 residential buildings damaged [@international11;@takano]. The disaster culminated with an accident at the Fukushima-Daiichi nuclear plant where, as of this writing, the long-term implications of the plant's failure are still unknown. Japanese Prime Minister Naoto Kan called it "Japan's worst crisis since the second world war" [@branigan11], and the damages make it the second largest natural disaster in Japan's modern history. Within three days of the earthquake, more than 468,000 people sought temporary refuge in nearby prefectures. By December of 2011, just eight months after the incident, 92,712 Fukushima residents remained evacuated, 33,943 of whom were still living inside the prefecture, according to the International Medical Corps' Fukushima Prefecture Data Sheet [-@international11].
+On March 11, 2011, a magnitude 9.0 earthquake occurred off the east coast of Japan –- the most powerful earthquake on record in that country and the fourth most powerful in the world since record keeping began in 1900 [@usgs14]. This event triggered a tsunami that was on average 10m high and up to 40m in height in some places [@sawa13], killing 15,871 people and injuring 6,114 more. An additional 2,778 people were still missing and presumed dead up two years after the earthquake [@hasegawa13]. Financial damages were estimated near \$160 billion (\$US2011), with more than 300,000 residential buildings damaged [@international11;@takano]. The disaster culminated with an accident at the Fukushima-Daiichi nuclear plant where, as of this writing, the long-term implications of the plant's failure are still unknown. Japanese Prime Minister Naoto Kan called it "Japan's worst crisis since the second world war" [@branigan11], and the damages make it the second largest natural disaster in Japan's modern history. Within three days of the earthquake, an estimated 468,000+ people sought temporary refuge from the disaster. By December of 2011, just eight months after the incident, 92,712 Fukushima residents remained evacuated, 33,943 of whom were still living inside the prefecture, according to the International Medical Corps' Fukushima Prefecture Data Sheet [-@international11].
 
 Iwate and Miyagi prefectures felt the brunt of the earthquake and ensuing tsunami (**\autoref{japanmapbase}**). Fukushima Prefecture, south of Miyagi, is home to the Fukushima-Daiichi Nuclear Plant, where the cooling functions of the reactors failed, resulting in a meltdown of the nuclear fuels and leakage of radioactive materials into the local environment [@takano]. These three prefectures accounted for approximately 82% of the damaged fishing ports, nearly 91% of the damaged fishing boats, and 84% of the lost aquaculture due to the earthquake and tsunami [@takano12]. The majority of the casualties and evacuees were also concentrated in these three prefectures [@isoda11].
 
 ```{r JapanMapbase, echo= FALSE, message = FALSE, warning = FALSE, out.width = '\\textwidth', fig.cap= paste("\\textbf{Japanese Prefectures.} The red point is the location of 2011 earthquake. The three most impacted prefectures (Fukushima, Iwate, and Miyagi) are highlighted. \\label{japanmapbase}"), fig.height= 6}
 
 ```
-Although much of the migration from the diaspora has been temporary, more permanent changes to Fukushima's migration were felt almost immediately. Prior to the earthquake, the prefecture was already experiencing depopulation [@matanle13]. However, out-migration from Fukushima increased by 70% between 2010 and 2011, while in-migration fell by 15%. This caused a change in the total net migration from -5,752 persons in 2010 to -31,381 in 2011, more than a five-fold increase in net out-migration in a single year [@statistics11]. The disaster caused a Japan-wide diaspora of residents most affected by the Tsunami and nuclear fallout. All Fukushima Prefecture residents within 20km of the plant and most residents within 30km were forced to evacuate. **\autoref{figure1}** shows the geographic distribution of out-migrants from Fukushima Prefecture in 2010 and 2011 and the location of the 2011 earthquake.
+Although much of the migration from the diaspora has been temporary, more permanent changes to Fukushima's migration were felt almost immediately. Prior to the earthquake, the prefecture was already experiencing depopulation [@matanle13]. However, out-migration from Fukushima increased by 70% between 2010 and 2011, while in-migration fell by 15%. This caused a change in the total net migration from -5,752 persons in 2010 to -31,381 in 2011, more than a five-fold increase in net out-migration in a single year [@statistics11]. The disaster caused a Japan-wide diaspora of residents most affected by the Tsunami and nuclear fallout. All Fukushima Prefecture residents within 20km of the plant and most residents within 30km were forced to evacuate. 
 
-Additionally, Japan has created a unique data collection system for processing both evacuees and more permanent migrants from the disaster [@suzuki13]. These evacuees are captured in a separate data collection system and are not a part of the official migration statistics.  By law, all Japanese nationals are required to register their residency. However, many evacuees are unwilling to report their relocation, hoping to return home. The Japanese Ministry of Home Affairs set up a new system following the tsunami and nuclear reactor disaster for evacuees that allows a resident to maintain their residency in their home prefecture while presently living in a different prefecture. Thus, evacuees from Fukushima Prefecture living in a nearby prefecture are still counted as residing in Fukushima in the official population estimates of the Ministry of Home Affairs while appearing in a nationwide evacuee database at their present prefecture.
+**\autoref{figure1}** shows the geographic distribution of out-migrants from Fukushima, Iwate, and Miyagi prefectures in 2010 and 2011. **\autoref{tab:topdestinations}** reports the top five destinations from these prefectures. Both Fukushima and Miyagi prefectures experience much larger out-migrations between 2010 and 2011, while Iwate experiences a much more modest increase (22,131 in 2010 to 22,199 in 2011). The general destinations are relatively similar between the two time periods as well. As **\autoref{tab:topdestinations}** shows, the top five destinations in 2010 were also the top five destinations in 2011 -- even if both the magnitude of out-migration and the exact ranking are different.
 
-Separating migrants from evacuees allows us to examine whether the two share a similar migration system. We expect that evacuees will move to destinations near their place of origin, whereas permanent migrants will follow social and human capital pathways. Our analysis compares the permanent migration system to the evacuee system of Fukushima residents. The permanent migration system data come from official Japanese government counts. To capture the evacuee migration system, we take the number and locations of evacuees from Fukushima prefecture in February 2012 from Takashi Oda's *A Snapshot of the Displacement of Fukushima Residents* [-@oda2012snapshot] and compare them with the 2010 and 2011 permanent migration data from the Statistics Bureau of Japan.
-
-# Environmental Migration
-When examining environmental migration, the effect an environmental pressure has on a migration system largely depends on the type of environmental pressure. Droughts, tropical cyclones, and tsunamis all affect a migration system differently. For instance, droughts might generate migrants but generally do not generate evacuees, whereas tropical cyclones and tsunamis can generate both. Research on the displacement of populations from flooding in India finds that displacements tend to be localized, with migration along short-distances in search of safer areas. Studies on Hurricane Katrina's impact on the Gulf Coast of the United States find similarly large out-flows to nearby areas [@frey07;@hori09;@stone12;@curtis2015recovery]. While these studies examine the geography of displacement, they provide little or no temporal comparison to the pre-event migration system nor do they distinguish evacuees from migrants.
-
-```{r JapanMap, echo= FALSE, message = FALSE, warning = FALSE, fig.cap= paste("\\textbf{Relationship between the 2010 percentage of out-migrants and the 2011 percentage of out-migrants from Fukushima Prefecture.} The red point is the location of 2011 earthquake. Fukushima Prefecture is in white. \\label{figure1}")}
+```{r Figure-Total-Migrants-Comparison-Multipanel-Map, echo= FALSE, message = FALSE, warning = FALSE, out.width = '\\textwidth', fig.cap= paste("\\textbf{Out-migration from Fukushima, Iwate, and Miyagi prefectures, 2010 and 2011.} We report the total number of out-migrants in the corner of each panel for each prefecture-year. Fukushima and Miyagi prefectures exhibit larger out-migration in 2011 compared to 2010 while Iwate Prefecture does not. \\label{figure1}"), fig.height = 6.5}
 
 ```
+
+```{r, echo = FALSE}
+
+
+tab19<- rbind(top_n(fukushima19, 5, num2011),
+      top_n(iwate19, 5, num2011),
+      top_n(miyagi19, 5, num2011)) %>%
+  dplyr::rename(Destination = origin,
+                Origin = X1,
+                `Migrants 2010` = num2010,
+                `Migrants 2011` = num2011) %>%
+  dplyr::select(Origin, everything()) %>%
+  arrange(Origin, -`Migrants 2011`)
+
+kable(tab19, "latex", booktabs = T, caption = "\\textbf{Top 5 destinations for Fukushima, Iwate, and Miyagi Prefectures.} We show the numeric top five destinations in 2010 and 2011. For all three prefectures, the top five contain the same destination prefectures in 2010 and 2011 while the exact ordering might be slightly different.  \\label{tab:topdestinations}", format.args = list(big.mark = ",")) %>%
+  collapse_rows(columns = 1, latex_hline = "major", valign = "middle") %>%
+  kable_styling(position = "center")
+```
+
+Additionally, Japan created a unique data collection system for processing both evacuees and more permanent migrants from the disaster. These evacuees are captured in a separate data collection system and are not a part of the official migration statistics.  By law, all Japanese nationals are required to register their residency. However, many evacuees are unwilling to report their relocation, hoping to return home. The Japanese Ministry of Home Affairs set up a new system following the tsunami and nuclear reactor disaster for evacuees that allows a resident to maintain their residency in their home prefecture while presently living in a different prefecture. Thus, evacuees from Fukushima Prefecture living in a nearby prefecture are still counted as residing in Fukushima in the official population estimates of the Ministry of Home Affairs while appearing in a nationwide evacuee database at their present prefecture. We describe the National Evacuee Data System in greater detail in the **Data and Methds** section.
+
+Separating migrants from evacuees allows us to examine whether the two share a similar migration system. We expect that evacuees will move to destinations near their place of origin, whereas permanent migrants will follow social and human capital pathways. Our analysis compares the permanent migration system to the evacuee system of Fukushima residents. The permanent migration system data come from official Japanese government counts. To capture the evacuee migration system, we take the number and locations of evacuees from Fukushima prefecture in June 2011 from Takashi Oda's *Grasping the Fukushima Displacement and Diaspora* [-@oda2011grasping] and compare them with the 2010 and 2011 permanent migration data from the Statistics Bureau of Japan.
+
+# Environmental Migration
+When examining environmental migration, the effect an environmental pressure has on a migration system largely depends on the type of environmental pressure. Droughts, tropical cyclones, and tsunamis all affect a migration system differently. For instance, droughts might generate migrants but generally do not generate evacuees, whereas tropical cyclones and tsunamis can generate both. Similar research on the displacement of populations from flooding in India finds that displacements tend to be localized, with migration along short-distances in search of safer areas [@kayastha85]. Studies on Hurricane Katrina's impact on the Gulf Coast of the United States find similarly large out-flows to nearby areas with some migration to distant locations [@frey07;@hori09;@stone12;@curtis2015recovery]. While these studies examine the geography of displacement, they provide little or no temporal comparison to the pre-event migration system nor do they distinguish evacuees from migrants.
 
 Allan Findlay's [-@findlay11] six principles governing migration provide key insights for understanding both evacuees and migrants[^bignote]. These six principles can be summarized into three main findings: A) Potential migrants prefer to stay in their current residence, often called the immobility paradox, B) If people do move, they tend to move short distances, and C) human capital and existing ties play a large role in determining destinations. We anticipate that evacuees tend to migrate short distances while permanent migrants will leverage human capital and existing ties in their location decisions.
 
@@ -107,12 +126,167 @@ Allan Findlay's [-@findlay11] six principles governing migration provide key ins
 
 Gutman and Field [-@gutmann10] developed a useful framework for understanding environmental effects on migration and have identified four types of environmental factors that influence migration: (1) environmental calamities such as floods, hurricanes, and earthquakes, (2) environmental hardships such as drought or short periods of favorable weather, (3) environmental amenities such as warmth, sun, or proximity to mountains and water, and (4) environmental barriers such as heat, air conditioning, irrigation, etc. This framework for environmental migration can be used to place historically significant environmental events of the 20th century into analytically useful categories. The list of environmental events or impacts is both long and wide and includes the American dust bowl of the 1930s [@adamo09], air conditioning [@glaeser07], and Hurricane Katrina [@fussell09], for instance. These typologies -- combined with Findlay's six principles -- provide a robust framework for organizing research on environmental migration, yet previous research on environmental migration is dominated by "who?" and "what?" questions. For example, many studies have focused on who moves [@hori09;@rivera07] and who returns [@groen10;@stringfield10;@thiede13]. Much of the literature has overlooked questions surrounding migrant destinations, leading to a gap in knowledge about how environmental events affect migration systems and patterns over time. 
 
-Migration systems theory (MST) is a branch of migration research that uses all origin-destination combinations as the object of study as opposed to any single origin-destination pair [@dewaard12;@fawcett89;@massey94]. A systems approach posits that when one place experiences a change, the effect is manifested throughout the system. Migration decisions -- not just decisions to migrate, but also location decisions -- are often driven by the presence or absence of human capital as well as macro factors such as labor force, economic vitality, anticipated increases in living standards, amenities, both natural and economic, and so forth [@fawcett89;@haug08;@lee66;@pandit97;@thiede13]. This network of human capital embedded within the migration system tends to drive locational decision making in the aftermath of environmental events [@findlay11;@gray13;@hugo08;@hugo11;@mcleman13;@schultz13; @randell2018strength].
+Migration systems theory (MST) is a branch of migration research that uses all origin-destination combinations as the object of study as opposed to any single origin-destination pair [@dewaard12;@fawcett89;@massey94]. A systems approach posits that when one place experiences a change, the effect is manifested throughout the system. Migration decisions -- not just decisions to migrate, but also location decisions -- are often driven by the presence or absence of human capital as well as macro factors such as labor force, economic vitality, anticipated increases in living standards, amenities, both natural and economic, and so forth [@fawcett89;@haug08;@lee66;@pandit97;@thiede13]. This network of human capital embedded within the migration system tends to drive locational decision making in the aftermath of environmental events [@findlay11;@gray13;@hugo08;@hugo11;@mcleman13;@schultz13].
 
 MST has been explicitly tied to environmental migration in recent years [@curtis2015recovery;@dewaard12;@fawcett89], with research examining both the stability of such systems [@dewaard12] as well as altered systems [@curtis2015recovery;@fussell14]. We build on this previous research and employ MST to explore the stability of the Japanese migration system in the wake of a catastrophic event. We are not necessarily concerned with *who* moved and why, nor *who* returned and why, but rather *where* people moved and whether permanent migrants and evacuees share migration systems.
 
+
 # Data and Methods
-We describe the migration systems in Japan using the Statistics Bureau of the Ministry of Internal Affairs and Communications of Japan's annual series of Origin-Destination matrices of prefecture-to-prefecture migration. Residents of Japan must register all changes of residence to their municipal governments for purposes of governance. It is from this population registry that the Statistics Bureau produces its annual series of internal migration. In response to the earthquake and tsunami and to support rehabilitation of evacuees, the Ministry of Internal Affairs and Communications, prefecture governments, and local municipalities collaborated to produce a Nationwide Evacuee Information Exchange System on April 12, 2011 [@suzuki13]. By June of 2011, over 1,700 municipalities were participating in this exchange. Thus two avenues of reporting are available for those displaced by the earthquake and tsunami: if a resident chooses to permanently relocate, they would be listed in the official prefecture-to-prefecture migration data, if a resident chooses to resettle in their home prefecture at a later date, they would be listed in the Evacuee Exchange System. This allows for a unique decomposition of environmental flows between permanent migrants and evacuees. Evacuee data, by its nature, is variable across time and difficult to collect [@hasegawa13]. Despite these limitations of evacuee data, current estimates from Takashi Oda and Reiko Hasegawa represent the best available data on the evacuees from the earthquake and tsunami from February of 2012. 
+## Data
+We describe the migration systems in Japan using two primary migration data sources. Concerning permanent migration, we use the Statistics Bureau of the Ministry of Internal Affairs and Communication's (MIC) annual series of Origin-Destination matrices of prefecture-to-prefecture migration. Residents of Japan must register all changes of residence to their municipal governments for purposes of governance. It is from this population registry that the Statistics Bureau produces its annual series of internal migration. Concerning more temporary, evacuee migration, we use data from the Nationwide Evacuee Information Exchange System that was created in the aftermath of the earthquake and tsunami.
+
+### Nationwide Evacuee Information Exchange System
+
+In response to the earthquake and tsunami and to support rehabilitation of evacuees, the Ministry of Internal Affairs and Communication (MIC), prefecture governments, and local municipalities collaborated to produce a Nationwide Evacuee Information Exchange System on April 12, 2011 [@suzuki13]. By June of 2011, over 1,700 municipalities were participating in this exchange. The purpose of the system is to allow participating governments to track and locate former residents. Evacuees voluntarily report their current residence at their current municipal government [@JPLaws; @oda2011grasping]. The information is then passed to their home municipality and to the Reconstruction Agency, which presently publishes the number of evacuees with the cooperation of local governments. 
+
+```{r Figure-Total-Evacs, echo= FALSE, message = FALSE, warning = FALSE, out.width = '\\textwidth', fig.cap= paste("\\textbf{Total Evacuees over time and the locations of Fukushima Prefecture evacuees} (a) We report the total number of evacuees from the National Evacuee Exchange System for the period 2011 to 2019 for Fukushima, Iwate, and Miyagi prefectures who were displaced outside of their home prefecture. (b) We report the locations of evacuees from Fukushima Prefecture in June 2011. \\label{figureEvacsTot}"), fig.height = 3.2}
+
+evactot <- tribble(
+  ~X1, ~Evacuees,
+  "2011-12",	69603,
+  "2012-06",	71977,
+  "2012-12",  67707,
+  "2013-06", 63159,
+  "2013-12", 57604,
+  "2014-06", 53533,
+  "2014-12", 54197,
+  "2015-06", 53887,
+  "2015-12", 51526,
+  "2016-06", 48853,
+  "2016-12", 46940,
+  "2017-06", 42285,
+  "2017-12", 40481,
+  "2018-06", 39167,
+  "2018-12", 38175,
+  "2019-06", 36674
+)
+
+
+evacuees <- tribble(
+  ~X1, ~origin, ~Evacuees,
+  "Hokkaido", "Fukushima",	1335,
+  "Aomori","Fukushima",	579,
+  "Iwate","Fukushima",	401,
+  "Miyagi","Fukushima",	1091,
+  "Akita","Fukushima",	865,
+  "Yamagata","Fukushima",	5518,
+  "Ibaraki","Fukushima",	1905,
+  "Tochigi","Fukushima",	2624,
+  "Gunma","Fukushima",	2510,
+  "Saitama","Fukushima",	2666,
+  "Chiba","Fukushima",	3024,
+  "Tokyo","Fukushima",	5102,
+  "Kanagawa","Fukushima",	1146,
+  "Niigata","Fukushima",	7219,
+  "Toyama","Fukushima",	402,
+  "Ishikawa","Fukushima",	424,
+  "Fukui","Fukushima",	414,
+  "Yamanashi","Fukushima",	723,
+  "Nagano","Fukushima",	929,
+  "Gihu","Fukushima",	261,
+  "Shizuoka","Fukushima",	1007,
+  "Aichi","Fukushima",	814,
+  "Mie","Fukushima",	145,
+  "Shiga","Fukushima",	254,
+  "Kyoto","Fukushima",	477,
+  "Osaka","Fukushima",	564,
+  "Hyogo","Fukushima",	498,
+  "Nara","Fukushima",	78,
+  "Wakayama","Fukushima",	50,
+  "Tottori","Fukushima",	70,
+  "Shimane","Fukushima",	143,
+  "Okayama","Fukushima",	132,
+  "Hiroshima","Fukushima",	235,
+  "Yamaguchi","Fukushima",	94,
+  "Tokushima","Fukushima",	58,
+  "Kagawa","Fukushima",	49,
+  "Ehime","Fukushima",	149,
+  "Kochi","Fukushima",	56,
+  "Fukuoka","Fukushima",	299,
+  "Saga","Fukushima",	60,
+  "Nagasaki","Fukushima",	111,
+  "Kumamoto","Fukushima",	72,
+  "Oita","Fukushima",	181,
+  "Miyazaki","Fukushima",	81,
+  "Kagoshima","Fukushima",	128,
+  "Okinawa","Fukushima",	299
+) 
+
+evacuees[[1]] <-toupper(evacuees[[1]])
+
+japan <- shapefile("../R/DATA-RAW/japanprefecture/japan_prefecture_boundary")
+japan_bb <- bb(japan, xlim=c(.15, .85), ylim=c(0.35, 1), relative = TRUE)
+
+fukmap2 <- append_data(japan, evacuees, key.shp= "NAM", key.data ="X1")
+
+fukmap2 <- st_as_sf(fukmap2)
+
+fukmap2$Evacuees2 <- factor(
+  cut(fukmap2$Evacuees, c(0,75,150,500,1000,1500,7219)),
+  labels = c("49-74", "75-149", "150-499", "500-999", "1000-1,499", "1,500-7,219")
+)
+
+evacmap <- ggplot(data=fukmap2) +
+  geom_sf(aes(fill = Evacuees2), color = "white", lwd = 0.5) +
+  coord_sf(ylim = c(30,46), xlim = c(127,150), expand = FALSE, datum = NA) +
+  viridis::scale_fill_viridis("",
+                              # option = "cividis",
+                              direction = -1,
+                              discrete = TRUE, na.value="gray") +
+  # geom_text(data = text, mapping = aes(130, 45, label = label)) +
+  theme_bw() +
+  theme(axis.title=element_blank(),
+        axis.text=element_blank(),
+        axis.ticks=element_blank(),
+        # legend.position = c(0.8, 0.2),
+        legend.position="bottom",
+        legend.text = element_text(size=5),
+        legend.title=element_text(size=8)
+  )+
+  NULL
+
+legend <- get_legend(
+  # create some space to the left of the legend
+  evacmap + theme(legend.box.margin = margin(0, 0, 0, 12))
+)
+
+evacfig <-
+ggplot(data = evactot, aes(x = X1, y = Evacuees, group =1)) +
+  geom_line(size =2) +
+  scale_y_continuous(labels=comma) +
+  scale_x_discrete(expand = c(0.01,0)) +
+  theme_bw()  +
+  theme(axis.text.x = element_text(angle = 90))+
+  labs(x ="")
+
+plot_grid(evacfig, evacmap 
+           # + theme(legend.position="none")
+          , 
+          # legend, 
+          ncol=2,
+           labels = c("a", "b"),
+          align = "vh",
+          rel_widths = c(1,1))
+
+```
+
+Individual prefecture governments are largely responsible for disaster relief, making most of the governmental response to the disaster shared between the national government, the 47 prefecture governments, and the 1700 municipalities [@aoki2016adaptive] and voluntary in nature [@JPLaws]. Even evacuee participation in the exchange system is voluntary and not compulsory. However there are numerous reasons why evacuees might participate. In August 2011, Japan passed a law enabling certain administrative services of displaced evacuees to be covered by the government in which they currently reside [@JPLaws]. Evacuees are eligible for these administrative services, in addition to financial grants, special loans, tax relief, unemployment benefits, emergency housing, relief from administrative obligations, access to relief donations, and monetary compensation [@JPLaws]. Evacuees might relocate to a different prefecture and participate in the evacuee system *without* registering a change of address in their home prefecture. 
+
+Most displacement was localized within the prefecture [@koyama2014social;@ishikawa12] likely due to local government responses. Some people evacuated via institutional transportation provided by the local government while others evacuated using their own means of transportation [@crimella201111]. Local governments relocated some evacuees using lottery methods and group allocation [@koyama2014social] and destination prefectures voluntarily provided unoccupied public housing to evacuees [@JPLaws]. Every prefecture in Japan received some evacuees (**\autoref{Figure3}**). The vast majority of evacuations and the governmental responses were voluntary and highly varied. Due to this largely decentralized governmental response and the voluntary nature of the response, the extent to which individual municipalities shaped destinations is largely unknown. Since the evacuations were largely voluntary, it seems unlikely that evacuee data reflects where the government chose to resettle people rather than the migration decisions of evacuees themselves.
+
+Official numbers published by the Reconstruction Agency show that more than 250k people from Iwate, Miyagi, and Fukushima prefectures participated in the evacuee system in December of 2011 but only 69k of these evacuees were displaced outside of their home prefectures. By June of 2018, the total number of evacuees inside these prefectures had fallen to 11k while 36k people were still listed as evacuees outside their home prefecture^[http://www.reconstruction.go.jp/topics/main-cat2/sub-cat2-1/201907_hinansha_suii.pdf, retrieved August 2019.]. **\autoref{figureEvacsTot}** shows the total number of persons in the evacuee system who were displaced outside their home prefecture for the three most impacted prefectures between 2011 and 2019.
+
+Evacuee data, by its nature, is variable across time and difficult to collect [@hasegawa13]. Despite this limitation, the data in the evacuee exchange system is the most rigorous and complete information on the locations of evacuees available, though it surely does not capture every evacuee since there is no legal obligation to participate. These data are the official number of evacuees from the Japanese government.
+
+<!-- Evacuee data, by its nature, is variable across time and difficult to collect [@hasegawa13]. Despite this limitation, the data in the evacuee exchange system is the most rigorous and complete information on the locations of evacuees available, though it surely does not capture every evacuee since there is no legal obligation to participate. These data are the official number of evacuees from the Japanese government.  Due to the decentralized governmental disaster response and the voluntary nature of individual participation in the evacuee system, the evacuee data system is comparable to typical migration collection systems.  -->
+
+The Reconstruction Agency publishes three primary pieces of information. (1) They publish the total number of evacuees present in each prefecture, but not the origin prefecture of these evacuees. (2) They publish the type accomodations in which evacuees shelter. There are four facility types: (a) public shelters such as public halls or schools, (b) hotels, (c) relatives/acquaintances, and (d) public/temporary housing including hospitals. In December of 2011, nearly 95% of evacuees were in public/temporary housing but by June 2019, evacuees were nearly evenly split between public/temporary housing and relatives/acquaintances. Finally, (3) they publish the number of evacuees located outside of the three most impacted prefectures.
+
+The Reconstruction Agency publishes total counts of evacuees, but not evacuees broken down by origin and destination prefecture. However, individual municipalities have access to the locations of their own displaced residents for administrative purposes. We use data published by Takashi Oda [-@oda2011grasping] on the location of evacuees from Fukushima Prefecture for June 2011 as reported to Fukushima Prefecture via the evacuee information system. The availability of evacuee data for only Fukushima Prefecture precludes an analysis of evacuees from Iwate and Miyagi prefectures, though evacuees from Iwate and Miyagi who relocated outside of their home prefecture total just 15% of the evacuees outside of their home prefecture. The lack of socio-economic data on evacuees also precludes an analysis of the socio-economic characteristics of evacuees.
+
+Thus two avenues of reporting are available for those displaced by the earthquake and tsunami: if a resident chooses to permanently relocate, they would be listed in the official prefecture-to-prefecture migration data, if a resident chooses to resettle in their home prefecture at a later date, they would be listed in the Evacuee Exchange System. This allows for a unique decomposition of environmental flows between permanent migrants and evacuees.
+
+## Characterizing Migration
 
 To assess permanent migration, we focus on the year preceding (2010), the year of the disaster (2011), and the years immediately after the earthquake and tsunami (2012 and 2013). In terms of evacuees, we compare the 2010 migration system before the earthquake to the diaspora of evacuees from Fukushima Prefecture in the post-disaster period (2012).
 
@@ -153,13 +327,14 @@ $i$ through $j$ refer to the set of 47 Japanese prefectures $\in\{Aichi,...,Yama
 These matrices have no "net" migrants and represent the complete picture of prefecture-to-prefecture out-migration. The sum of any given row in the matrix will equal 1.0, representing the total probability distribution of flows from any given prefecture to any given prefecture. 
 <!-- With 47 prefectures, the total number of cells in these origin-destination matrices is 4,418, representing the complete migration profile for Japan with any given prefecture accounting for 94 cells.  -->
 
+## Calculating Migration System Differences
 While the magnitudes of the flows can and should be different pre- and post- disaster, our tests determine whether the overall structure of the flows to each prefecture changed in the post-disaster period. For instance, in 2010 4.7% of all out-migrants from Fukushima Prefecture went to Tochigi Prefecture (1,470 of 31,363 out-migrants) and 4.8% in 2011 (2,542 of 53,122). Despite a 73% increase in the number of migrants from Fukushima to Tochigi, the proportion of out-migrants remained virtually unchanged. We are interested in whether the migration systems between the time periods M(2011, 2012, 2013, e) differs significantly from M(2010), not necessarily in the absolute changes in both in- and out-flows. 
 
-By converting the origin-destination matrices into matrices of probability distributions (ie the probability of moving from prefecture $i$ to prefecture $j$), we can use statistical distance metrics to quantify the similarity between two probability distributions. We utilize the Hellinger distance metric [@hellinger1909neue; @pardo2005statistical] to quantify the similarity and dissimilarity for each prefecture between time periods. Hellinger distance, $H(P,Q)$, describes the distance between two discrete probability distributions $P=(p_i,...p_k$) and $Q=(q_i,...,q_k$). 
+By converting the origin-destination matrices into matrices of probability distributions (ie the probability of moving from prefecture $i$ to prefecture $j$), we can use statistical distance metrics to quantify the similarity between two probability distributions. We utilize the Hellinger distance metric [@hellinger1909neue; @pardo2018statistical] to quantify the similarity and dissimilarity for each prefecture between time periods. Hellinger distance, $H(P,Q)$, describes the distance between two discrete probability distributions $P=(p_i,...p_k$) and $Q=(q_i,...,q_k$). 
 
-The Hellinger distance has several useful qualities as a distance metric. First, the distance value always lies between 0 and 1, where H=0 means distributions are identical. Second, it fulfills the four conditions required for a distance measure to be a metric as opposed to a divergence (such as the Kullback-Leibler Divergence) [@pardo2005statistical]: it must be non-negative; if $p$ and $q$ are the same then the distance must be zero; $H(P,Q)=H(Q,P$), implying symmetry; and it must obey the triangle inequality law.
+The Hellinger distance has several useful qualities as a distance metric. First, the distance value always lies between 0 and 1, where H=0 means distributions are identical. And second, it fulfills the four conditions required for a distance measure to be a metric as opposed to a divergence (such as the Kullback-Leibler Divergence) [@pardo2018statistical]: it must be non-negative; if $p$ and $q$ are the same then the distance must be zero; $H(P,Q)=H(Q,P$), implying symmetry; and it must obey the triangle inequality law.
 
-The general Hellinger distance equation is defined in Eq. \ref{hellinger}}.
+The general Hellinger distance equation is defined in Eq. \ref{hellinger}.
 
  \begin{equation}\label{hellinger}
   H(P,Q) = \sqrt{1-\sum_{i=1}^{N}\sqrt{p_i\cdot q_i}}
@@ -171,7 +346,7 @@ The general Hellinger distance equation is defined in Eq. \ref{hellinger}}.
 
 Where probability distribution $P$ is the set of probabilities of migrating from prefecture $i$ to prefectures $i$ to $j$ in time period $t$ and probability distribution $Q$ refers to the time period $t+1$. By calculating $H$ between each time period, we generate the distribution of $H$ to test for significance.
 
-We calculate $H$ between each consecutive time period for 2004-2015 to generate the distribution of $H$ to test for significance.  We also calculate $H$ for the distribution of $Fukushima_{2010}$ and $Evacuees_{2011}$ to measure the distance between the pre-existing migration system in Fukushima and that of the Evacuees. Since the Hellinger distance is bounded by 0 and 1, we report significance based on a log-normal distribution.
+We calculate $H$ between each consecutive time period for 2004-2015 and calculate a standard z-score ($z = (x_i - \mu)/\sigma)$ where $\mu$ is the mean of $H$ over all prefecture-periods.  We also calculate $H$ for the distribution of $Fukushima_{2010}$ and $Evacuees_{2011}$ to measure the distance between the pre-existing migration system in Fukushima and that of the Evacuees. Since the Hellinger distance is bounded by 0 and 1, we report significance based on a log-normal distribution.
 
 
 ## Reproducible Research
@@ -248,12 +423,14 @@ What about the Evacuees migration system is different from the pre-existing migr
 # Discussion
 Population displacement is expected to be a growing issue in the 21^st^ century. The environmental migration literature has generally focused on the characteristics of migrants, rather than their destinations. Where displaced persons migrate has important policy implications. For instance, global environmental change over the coming century could lead to mass migrations [@black11;@feng10] and knowing the potential destinations of future environmental migrants is paramount to understanding the total demographic implications of a world with increasing population displacement from environmental phenomena. Knowing who and from where someone might migrate is only two-thirds of the migration equation. This study provides an additional step toward filling the final third of the migration equation: to *where* someone might migrate.
 
-We find that the migratory responses to the Great East Japan Earthquake and subsequent events manifest in two separate and distinct systems: one for permanent migrants and one for evacuees. We also find relatively little change in the spatio-temporal structure of the migration system. The proportions and destinations of migrants were relatively unaltered in the aftermath of the earthquake and tsunami. These two systems, evacuation and migration, each exemplify different aspects of Findlay's six principles. Evacuees' migration seems to emphasize short-distance moves, while the permanent migrants seem to follow pre-existing human and social capital connections. Although our dataset does not include any measure of human capital, the stability of the migration system -- even in the face of such a catastrophic event -- and prior research (eg @randell2018strength) suggests that permanent migrants leverage human and social capital connections present in the pre-disaster migration system. Consequently, the migration system of permanent migrants after an environmental event are likely to reflect the migration systems exhibited prior to the event.
+Environmental migration has been a major topic of migration scholars and demographers [@nawrotzki2015climate;@gray13;@hunter2015environmental]. Rapid-onset environmental events, such as tropical cyclones, are typically studied to understand environmental migrantion [@fussell14;@lu2016unveiling], with Hurricane Katrina garnering tremendous attention [@stone12;@fussell09;@groen10;@curtis2015recovery]. However, many of these studies are limited to vague directional geographies such as 'rural to urban' [@gray13] or 'to nearby cities' [@mallick2014population]. Vagaries such as these make it difficult for governments to predict and plan for migration. But these studies inform our understanding of future climate-related migration -- migration that could increasingly be due to more slow-onset environmental changes such as drought or extreme heat. 
+
+The manifestation of environmental migration is largely depend upon the type of environmental pressure [@gutmann10]. Both rapid-onset and slow-onset environmental events can produce permanent migration but only rapid-onset events are likely to trigger evacuee migration. If our understanding of how future climate-rated migration might unfold comes from environmental events where permanent migrants and evacuees are analyzed together and future climate change migration is linked to slow-onset environmental change [@hunter13;@feng10;@call2017disruption], then governments responsible for managing this migration could be misinformed. While the Great East Japan Earthquake and Tsunami did not result from climate change, our work helps clarify which parts of a migration system are more predictable in response to an environmental event due to separate analysis of migrants and evacuees.
+
+We find that the migratory responses to the Great East Japan Earthquake and subsequent events manifest in two separate and distinct systems: one for permanent migrants and one for evacuees. We also find relatively little change in the spatio-temporal structure of the migration system. The proportions and destinations of migrants were relatively unaltered in the aftermath of the earthquake and tsunami. These two systems, evacuation and migration, each exemplify different aspects of Findlay's six principles. Evacuees' migration seems to emphasize short-distance moves, while the permanent migrants seem to follow pre-existing human and social capital connections. Although our dataset does not include any measure of human capital, the stability of the migration system -- even in the face of such a catastrophic event -- and prior research (eg @randell2018strength) suggests that permanent migrants leverage human and social capital connections present in the pre-environmental displacement migration system. Consequently, the migration system of permanent migrants after an environmental event are likely to reflect the migration systems exhibited prior to the event.
 
 Evacuees on the other hand, exhibit a markedly different migration system from the pre-existing migration system and, unlike more permanent migrants, were more likely to migrate to nearby destinations in greater numbers. Evacuees who suddenly had to give up their home may not be ready for distant relocation. For evacuees who were deeply rooted in their home community, it may have been difficult to move far away from their center of social capital and thus moved to nearby "safe" locations.
 
-There are some limitations to this analysis. First, the official number of evacuees is still in continual flux, even eight years after the disaster, and is subject to administrative problems [@ishikawa12]. The extent to which these administrative problems have infected the migration data is unknown. Similar issues plagued IRS data in the immediate aftermath of Hurricane Katrina [@johnson2008impacts], prompting skepticism around disaster-related administrative data [@curtis2015recovery;@groen10]. Second, data limitations also prevent any sort of analysis of evacuees who relocated within Fukushima Prefecture, both the number of evacuees still residing within the prefecture and where they came from. Additionally, the Japanese relocation policy could have steered evacuees to short-distance moves. The extent to which government policy shaped destinations is unknown.  Finally, while we document nearly a 550% increase in net negative migration from Fukushima Prefecture after the disaster, the total number of negative net migrants pales in comparison to the known number of displaced evacuees. How many of these evacuees have been included in the official migration statistics is unknown, and this study examines only the universe of migrants per- and post-disaster captured in the Japanese government data.
+There are some limitations to this analysis. First, the official number of evacuees is still in continual flux, even eight years after the disaster, and is subject to administrative problems [@ishikawa12]. The extent to which these administrative problems have infected the migration data is unknown. Similar issues plagued IRS data in the immediate aftermath of Hurricane Katrina [@johnson2008impacts], prompting skepticism around disaster-related administrative data [@curtis2015recovery;@groen10]. Additionally, the Japanese relocation policy could have steered evacuees to short-distance moves. The extent to which government policy shaped destinations is unknown, though presumed to be minimal. Finally, while we document nearly a 550% increase in net negative migration from Fukushima Prefecture after the disaster, the total number of negative net migrants pales in comparison to the known number of displaced evacuees. How many of these evacuees have been included in the official migration statistics is unknown, and this study examines only the universe of migrants pre- and post-disaster captured in the Japanese government data.
 
 Despite these limitations, our research provides a robust examination of two concurrent migration systems and contributes to the environmental migration literature. There is growing interest in projecting migration responses to environmental events [@curtis2011understanding;@rigaud2018groundswell;@hauer2017migration;@hassani2012climate; @lu2016unveiling;@davis2018universal], and our method, data, and results offer important empirical grounding to further those efforts.
-
-
